@@ -4,18 +4,6 @@
     {
       "name": "Dungeons",
       "categories": [
-        { "name": "Blighted Grove", "locations": [{ "name": "Entrance", "location": [586, 1643, -5] }] },
-        {
-          "name": "Covetous",
-          "locations": [
-            { "name": "Entrance", "location": [2499, 919, 0] },
-            { "name": "Level 1", "location": [5456, 1863, 0] },
-            { "name": "Level 2", "location": [5614, 1997, 0] },
-            { "name": "Level 3", "location": [5579, 1924, 0] },
-            { "name": "Lake Cave", "location": [5467, 1805, 7] },
-            { "name": "Torture Chambers", "location": [5552, 1807, 0] }
-          ]
-        },
         {
           "name": "Deceit",
           "locations": [
@@ -92,87 +80,6 @@
           ]
         },
         {
-          "name": "Fire",
-          "locations": [
-            { "name": "Entrance", "location": [5760, 2908, 15] },
-            { "name": "Brit Entrance", "location": [2923, 3407, 8] },
-            { "name": "Level 1", "location": [5790, 1416, 40] },
-            { "name": "Level 2", "location": [5702, 1316, 1] }
-          ]
-        },
-        {
-          "name": "Ice",
-          "locations": [
-            { "name": "Entrance", "location": [5210, 2322, 30] },
-            { "name": "Brit Entrance", "location": [1999, 81, 4] },
-            { "name": "Level 1", "location": [5875, 150, 15] },
-            { "name": "Ratman Room", "location": [5834, 327, 18] },
-            { "name": "Ice Demon Lair", "location": [5700, 305, 0] }
-          ]
-        },
-        {
-          "name": "Orc Cave",
-          "locations": [
-            { "name": "Entrance", "location": [1019, 1431, 0] },
-            { "name": "Level 1", "location": [5137, 2014, 0] },
-            { "name": "Level 2", "location": [5332, 1376, 0] },
-            { "name": "Level 3", "location": [5272, 2036, 0] }
-          ]
-        },
-        { "name": "Painted Caves", "locations": [{ "name": "Entrance", "location": [1716, 2993, 0] }] },
-        {
-          "name": "Palace of Paroxysmus",
-          "locations": [{ "name": "Entrance", "location": [5576, 3018, 25] }]
-        },
-        { "name": "Prism of Light", "locations": [{ "name": "Entrance", "location": [3784, 1097, 14] }] },
-        { "name": "Sanctuary", "locations": [{ "name": "Entrance", "location": [764, 1646, 0] }] },
-        {
-          "name": "Solen Hives",
-          "categories": [
-            {
-              "name": "Area A",
-              "locations": [
-                { "name": "Entrance", "location": [729, 1451, 0] },
-                { "name": "Level 1", "location": [5658, 1795, 3] },
-                { "name": "Level 2", "location": [5726, 1891, 1] }
-              ]
-            },
-            {
-              "name": "Area B",
-              "locations": [
-                { "name": "Entrance", "location": [2607, 763, 0] },
-                { "name": "Level 1", "location": [5921, 1797, 1] },
-                { "name": "Level 2", "location": [5875, 1866, 2] }
-              ]
-            },
-            {
-              "name": "Area C",
-              "locations": [
-                { "name": "Entrance", "location": [1689, 2789, 0] },
-                { "name": "Level 1", "location": [5659, 2022, 0] },
-                { "name": "Level 2", "location": [5708, 1955, 0] }
-              ]
-            },
-            {
-              "name": "Area D",
-              "locations": [
-                { "name": "Entrance", "location": [1723, 814, 0] },
-                { "name": "Level 1", "location": [5916, 2019, 3] },
-                { "name": "Level 2", "location": [5813, 2012, -1] }
-              ]
-            },
-            { "name": "Area E", "locations": [{ "name": "Entrance", "location": [5732, 1858, 0] }] }
-          ],
-          "locations": [{ "name": "Central Area", "location": [5774, 1896, 20] }]
-        }
-      ]
-    },
-    {
-      "name": "Internal",
-      "categories": [
-        {
-          "name": "Jail Cells",
-          "locations": [
             { "name": "Cell 1", "location": [5276, 1164, 0] },
             { "name": "Cell 2", "location": [5286, 1164, 0] },
             { "name": "Cell 3", "location": [5296, 1164, 0] },
@@ -290,12 +197,10 @@
           ]
         },
         {
-          "name": "Haven",
+          "name": "New Haven",
           "locations": [
-            { "name": "Old Haven", "location": [3650, 2592, 0] },
-            { "name": "Old Haven North", "location": [3650, 2516, 0] },
-            { "name": "New Haven", "location": [3506, 2570, 14] },
-            { "name": "New Haven North", "location": [3502, 2475, 34] },
+            { "name": "New Haven", "location": [3650, 2592, 0] },
+            { "name": "New Haven North", "location": [3650, 2516, 0] },
             { "name": "Farmlands", "location": [3722, 2647, 20] }
           ]
         },
@@ -382,3 +287,86 @@
     }
   ]
 }
+{
+  "name": "Trammel",
+  "categories": [
+    {
+      "name": "Dungeons",
+      "categories": [
+        {
+          "name": "Deceit",
+          "locations": [
+            { "name": "Entrance", "location": [4111, 432, 5] },
+            { "name": "Level 1", "location": [5188, 638, 0] },
+            { "name": "Level 2", "location": [5305, 533, 2] },
+            { "name": "Level 3", "location": [5137, 650, 5] },
+            { "name": "Level 4", "location": [5306, 652, 2] }
+          ]
+        },
+        {
+          "name": "Despise",
+          "locations": [
+            { "name": "Entrance", "location": [1298, 1080, 0] },
+            { "name": "Entryway", "location": [5587, 631, 30] },
+            { "name": "Level 1", "location": [5501, 570, 59] },
+            { "name": "Level 2", "location": [5519, 673, 20] },
+            { "name": "Level 3", "location": [5407, 859, 45] }
+          ]
+        },
+        {
+          "name": "Destard",
+          "locations": [
+            { "name": "Entrance", "location": [1176, 2637, 0] },
+            { "name": "Level 1", "location": [5243, 1006, 0] },
+            { "name": "Level 2", "location": [5143, 801, 4] },
+            { "name": "Level 3", "location": [5137, 986, 5] }
+          ]
+        },
+        {
+          "name": "Hythloth",
+          "locations": [
+            { "name": "Entrance", "location": [4721, 3822, 0] },
+            { "name": "Level 1", "location": [5905, 20, 46] },
+            { "name": "Level 2", "location": [5976, 169, 0] },
+            { "name": "Level 3", "location": [6083, 145, -20] },
+            { "name": "Level 4", "location": [6059, 89, 24] }
+          ]
+        },
+        {
+          "name": "Shame",
+          "locations": [
+            { "name": "Entrance", "location": [514, 1561, 0] },
+            { "name": "Level 1", "location": [5395, 126, 0] },
+            { "name": "Level 2", "location": [5515, 11, 5] },
+            { "name": "Level 3", "location": [5514, 148, 25] },
+            { "name": "Level 4", "location": [5875, 20, -5] }
+          ]
+        },
+        {
+          "name": "Wrong",
+          "locations": [
+            { "name": "Entrance", "location": [2043, 238, 10] },
+{
+  "name": "Trammel",
+  "categories": [
+    {
+      "name": "Dungeons",
+      "categories": [
+        {
+          "name": "Deceit",
+          "locations": [
+            { "name": "Entrance", "location": [4111, 432, 5] },
+            { "name": "Level 1", "location": [5188, 638, 0] },
+            { "name": "Level 2", "location": [5305, 533, 2] },
+{
+  "name": "Trammel",
+  "categories": [
+    {
+      "name": "Dungeons",
+      "categories": [
+        {
+          "name": "Deceit",
+          "locations": [
+            { "name": "Entrance", "location": [4111, 432, 5] },
+            { "name": "Level 1", "location": [5188, 638, 0] },
+            { "name": "Level 2", "location": [5305, 533, 2] },

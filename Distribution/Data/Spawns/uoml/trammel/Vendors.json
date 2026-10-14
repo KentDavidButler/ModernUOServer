@@ -3,7 +3,7 @@
     "$type": "Spawner",
     "guid": "011fc0f3-9e98-44ed-ab77-e0669247aacf",
     "name": "Spawner (2125)",
-    "location": [3645, 2617, 0],
+    "location": [3642, 2595, 0],
     "map": "Trammel",
     "count": 2,
     "minDelay": "00:05:00",
