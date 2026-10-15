@@ -2087,13 +2087,13 @@ namespace Server.Gumps
                                 }
                             case 107:
                                 {
-                                    InvokeCommand("GenChamps");
+                                    //InvokeCommand("GenChamps");
                                     notice = "Champions have been generated.";
                                     break;
                                 }
                             case 108:
                                 {
-                                    InvokeCommand("DecorateMag");
+                                    //InvokeCommand("DecorateMag");
                                     notice = "Magincia Ruins decorations have been generated.";
                                     break;
                                 }
@@ -2105,8 +2105,8 @@ namespace Server.Gumps
                                 }
                             case 110:
                                 {
-                                    InvokeCommand("SHTelGen");
-                                    notice = "Solen Hive teleporters have been generated.";
+                                    //InvokeCommand("SHTelGen");
+                                    //notice = "Solen Hive teleporters have been generated.";
                                     break;
                                 }
                             case 111:
@@ -2117,15 +2117,15 @@ namespace Server.Gumps
                                 }
                             case 112:
                                 {
-                                    InvokeCommand("GenLeverPuzzle");
-                                    InvokeCommand("GenGauntlet");
+                                    //InvokeCommand("GenLeverPuzzle");
+                                    //InvokeCommand("GenGauntlet");
                                     notice = "Doom  has been generated.";
                                     break;
                                 }
                             case 113:
                                 {
-                                    InvokeCommand("GenKhaldun");
-                                    notice = "Khaldun puzzles have been generated.";
+                                    //InvokeCommand("GenKhaldun");
+                                    //notice = "Khaldun puzzles have been generated.";
                                     break;
                                 }
 
@@ -2150,26 +2150,26 @@ namespace Server.Gumps
                                     InvokeCommand("Decorate");
 
                                     // 107
-                                    InvokeCommand("GenChamps");
+                                    //InvokeCommand("GenChamps");
 
                                     // 108
-                                    InvokeCommand("DecorateMag");
+                                    //InvokeCommand("DecorateMag");
 
                                     // 109
-                                    InvokeCommand("GenStealArties");
+                                    //InvokeCommand("GenStealArties");
 
                                     // 110
-                                    InvokeCommand("SHTelGen");
+                                    //InvokeCommand("SHTelGen");
 
                                     // 111
                                     InvokeCommand("SecretLocGen");
 
                                     // 112
-                                    InvokeCommand("GenLeverPuzzle");
-                                    InvokeCommand("GenGauntlet");
+                                    //InvokeCommand("GenLeverPuzzle");
+                                    //InvokeCommand("GenGauntlet");
 
                                     // 113
-                                    InvokeCommand("GenKhaldun");
+                                    //InvokeCommand("GenKhaldun");
 
                                     notice = "All the above options have been generated at once.";
                                     break;
