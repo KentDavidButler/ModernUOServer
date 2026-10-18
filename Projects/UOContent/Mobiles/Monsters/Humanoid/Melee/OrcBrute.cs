@@ -9,8 +9,9 @@ namespace Server.Mobiles
         [Constructible]
         public OrcBrute() : base(AIType.AI_Melee)
         {
-            Body = 189;
+            Body = 138;
             BaseSoundID = 0x45A;
+            Hue = Server.Utility.RandomFireHue;
 
             SetStr(767, 945);
             SetDex(66, 75);

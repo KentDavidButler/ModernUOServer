@@ -189,7 +189,6 @@ public class PMList
                 new PMEntry(new Point3D(2701, 692, 5), 1012007),    // Minoc
                 new PMEntry(new Point3D(1828, 2948, -20), 1012008), // Trinsic
                 new PMEntry(new Point3D(643, 2067, 5), 1012009),    // Skara Brae
-                /* Dynamic Z for Magincia to support both old and new maps. */
                 new PMEntry(new Point3D(3563, 2139, Map.Trammel.GetAverageZ(3563, 2139)), 1012010), // (New) Magincia
             ]
         );
@@ -209,7 +208,6 @@ public class PMList
                 new PMEntry(new Point3D(643, 2067, 5), 1012009),    // Skara Brae
                 /* Dynamic Z for Magincia to support both old and new maps. */
                 new PMEntry(new Point3D(3563, 2139, Map.Felucca.GetAverageZ(3563, 2139)), 1012010), // (New) Magincia
-                new PMEntry(new Point3D(2711, 2234, 0), 1019001)                                    // Buccaneer's Den
             ]
         );
 
@@ -278,8 +276,8 @@ public class PMList
     public static readonly PMList[] NoTrammelLists = [Felucca];
     public static readonly PMList[] T2ALists = [Trammel, Felucca];
     public static readonly PMList[] T2AListsYoung = [Trammel];
-    public static readonly PMList[] LBRLists = [Trammel, Felucca, Ilshenar];
-    public static readonly PMList[] LBRListsYoung = [Trammel, Ilshenar];
+    public static readonly PMList[] LBRLists = [Trammel];
+    public static readonly PMList[] LBRListsYoung = [Trammel];
     public static readonly PMList[] AOSLists = [Trammel, Felucca, Ilshenar, Malas];
     public static readonly PMList[] AOSListsYoung = [Trammel, Ilshenar, Malas];
     public static readonly PMList[] SELists = [Trammel, Felucca, Ilshenar, Malas, Tokuno];
@@ -412,7 +410,7 @@ public class MoongateGump : DynamicGump
         builder.AddHtmlLocalized(5, 5, 200, 20, 1012011); // Pick your destination:
 
         // Tab buttons on page 0 — rendered in original (pre-swap) order so the active map appears at its expected slot.
-        for (var i = 0; i < _tabOrder.Length; ++i)
+        for (var i = 0; i < _tabOrder.Length-1; ++i)
         {
             builder.AddButton(10, 35 + i * 25, 2117, 2118, 0, GumpButtonType.Page, Array.IndexOf(_lists, _tabOrder[i]) + 1);
             builder.AddHtmlLocalized(30, 35 + i * 25, 150, 20, _tabOrder[i].Number);

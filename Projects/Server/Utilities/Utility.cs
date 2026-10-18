@@ -958,6 +958,12 @@ public static partial class Utility
     /// <summary>
     ///     Random hue in the range 1701-1754
     /// </summary>
+    
+     public static int RandomFireHue() => Random(1161, 32);
+
+    /// <summary>
+    ///     Random hue in the range 1161-1192
+    /// </summary>
     public static int RandomYellowHue() => Random(1701, 54);
 
     /// <summary>

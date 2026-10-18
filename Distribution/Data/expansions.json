@@ -323,9 +323,9 @@
       "EJ": false
     },
     "MapSelectionFlags": {
-      "Felucca": true,
+      "Felucca": false,
       "Trammel": true,
-      "Ilshenar": true,
+      "Ilshenar": false,
       "Malas": false,
       "Tokuno": false,
       "TerMer": false

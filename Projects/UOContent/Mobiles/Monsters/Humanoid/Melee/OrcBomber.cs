@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using ModernUO.Serialization;
 using Server.Items;
 using Server.Misc;
@@ -14,7 +15,8 @@ namespace Server.Mobiles
         [Constructible]
         public OrcBomber() : base(AIType.AI_Melee)
         {
-            Body = 182;
+            Body = 17;
+            Hue = Server.Utility.RandomFireHue;
             BaseSoundID = 0x45A;
 
             SetStr(147, 215);
