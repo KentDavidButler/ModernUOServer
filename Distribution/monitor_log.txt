@@ -1,9 +1,4 @@
-Modern UO is Running and Happy: Thu Oct 15 17:16:31 EDT 2026
-Restarting Modern UO Service: Thu Oct 15 17:19:07 EDT 2026
-Restarting Modern UO Service: Thu Oct 15 18:02:36 EDT 2026
-Restarting Modern UO Service: Thu Oct 15 18:35:26 EDT 2026
-Restarting Modern UO Service: Thu Oct 15 19:16:45 EDT 2026
-Restarting Modern UO Service: Thu Oct 15 19:20:01 EDT 2026
-Modern UO is Running and Happy: Thu Oct 15 19:22:19 EDT 2026
-Modern UO is Running and Happy: Thu Oct 15 19:25:02 EDT 2026
-Modern UO is Running and Happy: Thu Oct 15 19:30:01 EDT 2026
+Starting Modern UO Service: Sun Oct 18 18:40:01 EDT 2026
+Starting Modern UO Service: Mon Oct 19 07:05:01 EDT 2026
+Starting Modern UO Service: Mon Oct 19 07:25:01 EDT 2026
+Starting Modern UO Service: Mon Oct 19 07:35:01 EDT 2026
