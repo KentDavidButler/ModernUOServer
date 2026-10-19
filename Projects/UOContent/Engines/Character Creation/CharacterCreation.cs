@@ -298,6 +298,11 @@ public static partial class CharacterCreation
 
     private static CityInfo GetStartLocation(CharacterCreatedEventArgs args)
     {
+        // Respect the location the player picked in the creation screen
+        if (args.City != null)
+        {
+            return args.City;
+        }
         var availableMaps = ExpansionInfo.CoreExpansion.MapSelectionFlags;
         var m = args.Mobile;
 
