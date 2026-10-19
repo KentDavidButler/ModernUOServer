@@ -218,10 +218,10 @@ public static class AccountHandler
             {
                 res = DeleteResultType.CharBeingPlayed;
             }
-            else if (acct.AccessLevel == AccessLevel.Player && RestrictDeletion && Core.Now < m.Created + DeleteDelay)
-            {
-                res = DeleteResultType.CharTooYoung;
-            }
+            // else if (acct.AccessLevel == AccessLevel.Player && RestrictDeletion && Core.Now < m.Created + DeleteDelay)
+            // {
+            //     res = DeleteResultType.CharTooYoung;
+            // }
             // Don't need to check current location, if netstate is null, they're logged out
             else if (
                 m.AccessLevel == AccessLevel.Player &&

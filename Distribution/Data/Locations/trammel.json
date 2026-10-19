@@ -118,12 +118,6 @@
             { "name": "Level 3", "location": [5272, 2036, 0] }
           ]
         },
-        { "name": "Painted Caves", "locations": [{ "name": "Entrance", "location": [1716, 2993, 0] }] },
-        {
-          "name": "Palace of Paroxysmus",
-          "locations": [{ "name": "Entrance", "location": [5576, 3018, 25] }]
-        },
-        { "name": "Prism of Light", "locations": [{ "name": "Entrance", "location": [3784, 1097, 14] }] },
         { "name": "Sanctuary", "locations": [{ "name": "Entrance", "location": [764, 1646, 0] }] }
       ]
     },
@@ -196,7 +190,6 @@
             { "name": "Orc Fort", "location": [2171, 1332, 0] }
           ]
         },
-        { "name": "Heartwood", "locations": [{ "name": "Entrance", "location": [6986, 340, 0] }] },
         {
           "name": "Jhelom",
           "locations": [

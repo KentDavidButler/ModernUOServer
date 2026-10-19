@@ -73,13 +73,13 @@ public static partial class CharacterCreation
 
     private static readonly TimeSpan BadStartMessageDelay = TimeSpan.FromSeconds(3.5);
 
-    public static readonly CityInfo[] OldHavenStartingCities =
-    [
-        new("Haven", "The Bountiful Harvest Inn", 3677, 2625, 0, Map.Trammel),
-        new("Britain", "Sweet Dreams Inn", 1075074, 1496, 1628, 10, Map.Trammel),
-        new("Magincia", "The Great Horns Tavern", 1075077, 3734, 2222, 20, Map.Trammel),
-    ];
-    // Possible Starting Location investigation
+    // public static readonly CityInfo[] OldHavenStartingCities =
+    // [
+    //     new("Haven", "The Bountiful Harvest Inn", 3677, 2625, 0, Map.Trammel),
+    //     new("Britain", "Sweet Dreams Inn", 1075074, 1496, 1628, 10, Map.Trammel),
+    //     new("Magincia", "The Great Horns Tavern", 1075077, 3734, 2222, 20, Map.Trammel),
+    // ];
+    // // Possible Starting Location investigation
 
     public static readonly CityInfo[] FeluccaStartingCities =
     [
@@ -146,7 +146,7 @@ public static partial class CharacterCreation
 
         // if (availableMaps.Includes(MapSelectionFlags.Felucca))
         // {
-            return FeluccaStartingCities;
+            return TrammelStartingCities;
         // }
 
         // logger.Error("No starting cities are available.");
