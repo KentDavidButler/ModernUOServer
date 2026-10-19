@@ -79,6 +79,7 @@ public static partial class CharacterCreation
         new("Britain", "Sweet Dreams Inn", 1075074, 1496, 1628, 10, Map.Trammel),
         new("Magincia", "The Great Horns Tavern", 1075077, 3734, 2222, 20, Map.Trammel),
     ];
+    // Possible Starting Location investigation
 
     public static readonly CityInfo[] FeluccaStartingCities =
     [
@@ -123,33 +124,33 @@ public static partial class CharacterCreation
 
     private static CityInfo[] ConstructAvailableStartingCities()
     {
-        var pre6000ClientSupport = TileMatrix.Pre6000ClientSupport;
-        var availableMaps = ExpansionInfo.CoreExpansion.MapSelectionFlags;
-        var trammelAvailable = availableMaps.Includes(MapSelectionFlags.Trammel);
-        var terMerAvailable = availableMaps.Includes(MapSelectionFlags.TerMur);
+        // var pre6000ClientSupport = TileMatrix.Pre6000ClientSupport;
+        // var availableMaps = ExpansionInfo.CoreExpansion.MapSelectionFlags;
+        // var trammelAvailable = availableMaps.Includes(MapSelectionFlags.Trammel);
+        // var terMerAvailable = availableMaps.Includes(MapSelectionFlags.TerMur);
 
-        if (trammelAvailable)
-        {
-            if (pre6000ClientSupport)
-            {
-                return [..OldHavenStartingCities, ..TrammelStartingCities];
-            }
+        // if (trammelAvailable)
+        // {
+        //     if (pre6000ClientSupport)
+        //     {
+        //         return [..OldHavenStartingCities, ..TrammelStartingCities];
+        //     }
 
-            if (terMerAvailable)
-            {
-                return [..NewHavenStartingCities, ..TrammelStartingCities, ..StartingCitiesSA];
-            }
+        //     if (terMerAvailable)
+        //     {
+        //         return [..NewHavenStartingCities, ..TrammelStartingCities, ..StartingCitiesSA];
+        //     }
 
-            return [..NewHavenStartingCities, ..TrammelStartingCities];
-        }
+        //     return [..NewHavenStartingCities, ..TrammelStartingCities];
+        // }
 
-        if (availableMaps.Includes(MapSelectionFlags.Felucca))
-        {
+        // if (availableMaps.Includes(MapSelectionFlags.Felucca))
+        // {
             return FeluccaStartingCities;
-        }
+        // }
 
-        logger.Error("No starting cities are available.");
-        return [];
+        // logger.Error("No starting cities are available.");
+        // return [];
     }
 
     [GeneratedEvent(nameof(CharacterCreatedEvent))]
@@ -298,11 +299,7 @@ public static partial class CharacterCreation
 
     private static CityInfo GetStartLocation(CharacterCreatedEventArgs args)
     {
-        // Respect the location the player picked in the creation screen
-        if (args.City != null)
-        {
-            return args.City;
-        }
+       
         var availableMaps = ExpansionInfo.CoreExpansion.MapSelectionFlags;
         var m = args.Mobile;
 
