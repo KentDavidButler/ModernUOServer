@@ -273,21 +273,36 @@ public class PMList
             ]
         );
 
-    public static readonly PMList[] NoTrammelLists = [Felucca];
-    public static readonly PMList[] T2ALists = [Trammel, Felucca];
+    // public static readonly PMList[] NoTrammelLists = [Felucca];
+    // public static readonly PMList[] T2ALists = [Trammel, Felucca];
+    // public static readonly PMList[] T2AListsYoung = [Trammel];
+    
+    public static readonly PMList[] NoTrammelLists = [Trammel];
+    public static readonly PMList[] T2ALists = [Trammel];
     public static readonly PMList[] T2AListsYoung = [Trammel];
     public static readonly PMList[] LBRLists = [Trammel];
     public static readonly PMList[] LBRListsYoung = [Trammel];
-    public static readonly PMList[] AOSLists = [Trammel, Felucca, Ilshenar, Malas];
-    public static readonly PMList[] AOSListsYoung = [Trammel, Ilshenar, Malas];
-    public static readonly PMList[] SELists = [Trammel, Felucca, Ilshenar, Malas, Tokuno];
-    public static readonly PMList[] SEListsYoung = [Trammel, Ilshenar, Malas, Tokuno];
-    public static readonly PMList[] SALists = [Trammel, Felucca, Ilshenar, Malas, Tokuno, TerMur];
-    public static readonly PMList[] SAListsYoung = [Trammel, Ilshenar, Malas, Tokuno, TerMur];
-    public static readonly PMList[] TOLLists = [Trammel, Felucca, Ilshenar, Malas, Tokuno, TerMurEodon];
-    public static readonly PMList[] TOLListsYoung = [Trammel, Ilshenar, Malas, Tokuno, TerMurEodon];
-    public static readonly PMList[] RedLists = [Felucca];
-    public static readonly PMList[] SigilLists = [Felucca];
+    // public static readonly PMList[] AOSLists = [Trammel, Felucca, Ilshenar, Malas];
+    // public static readonly PMList[] AOSListsYoung = [Trammel, Ilshenar, Malas];
+    // public static readonly PMList[] SELists = [Trammel, Felucca, Ilshenar, Malas, Tokuno];
+    // public static readonly PMList[] SEListsYoung = [Trammel, Ilshenar, Malas, Tokuno];
+    // public static readonly PMList[] SALists = [Trammel, Felucca, Ilshenar, Malas, Tokuno, TerMur];
+    // public static readonly PMList[] SAListsYoung = [Trammel, Ilshenar, Malas, Tokuno, TerMur];
+    // public static readonly PMList[] TOLLists = [Trammel, Felucca, Ilshenar, Malas, Tokuno, TerMurEodon];
+    // public static readonly PMList[] TOLListsYoung = [Trammel, Ilshenar, Malas, Tokuno, TerMurEodon];
+    // public static readonly PMList[] RedLists = [Felucca];
+    // public static readonly PMList[] SigilLists = [Felucca];
+    
+    public static readonly PMList[] AOSLists = [Trammel];
+    public static readonly PMList[] AOSListsYoung = [Trammel];
+    public static readonly PMList[] SELists = [Trammel];
+    public static readonly PMList[] SEListsYoung = [Trammel];
+    public static readonly PMList[] SALists = [Trammel];
+    public static readonly PMList[] SAListsYoung = [Trammel];
+    public static readonly PMList[] TOLLists = [Trammel];
+    public static readonly PMList[] TOLListsYoung = [Trammel];
+    public static readonly PMList[] RedLists = [Trammel];
+    public static readonly PMList[] SigilLists = [Trammel];
 
     public PMList(int number, int selNumber, Map map, PMEntry[] entries)
     {

@@ -18,4 +18,9 @@
   <Properties Name="Visual Studio">
     <Property Name="MinimumVersion" Value="18.0.11222.15" />
   </Properties>
+  <PropertyGroup>
+  <!-- Options: low, moderate, high, critical -->
+  <!-- Setting it to high means 'low' and 'moderate' will not fail the restore -->
+  <NuGetAuditLevel>high</NuGetAuditLevel>
+</PropertyGroup>
 </Solution>
