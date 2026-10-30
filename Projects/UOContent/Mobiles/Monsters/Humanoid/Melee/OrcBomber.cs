@@ -16,7 +16,7 @@ namespace Server.Mobiles
         public OrcBomber() : base(AIType.AI_Melee)
         {
             Body = 17;
-            Hue = Server.Utility.RandomFireHue();
+            Hue = Server.Utility.RandomRedHue();
             BaseSoundID = 0x45A;
 
             SetStr(147, 215);

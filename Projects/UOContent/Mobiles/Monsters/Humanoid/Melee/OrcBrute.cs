@@ -11,7 +11,7 @@ namespace Server.Mobiles
         {
             Body = 138;
             BaseSoundID = 0x45A;
-            Hue = Server.Utility.RandomFireHue();
+            Hue = Server.Utility.RandomRedHue();
 
             SetStr(767, 945);
             SetDex(66, 75);
