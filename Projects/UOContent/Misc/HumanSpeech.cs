@@ -251,6 +251,22 @@ namespace Server.Misc
             "Light's blessing to you"
         };
 
+        //TODO:
+        // Add Fisherman phrases
+        // Add Bard Phrases
+        // Add Butcher Phrases
+        // Add Carpenter Phrases
+        // Add Cobbler Phrases
+        // Add Cook Phrases
+        // Add Farmer Phrases
+        // Add Jewler Phrases
+        // Add Provisioner Phrases
+        // Add Scribe Phrases
+        // Add Tailor Phrases
+        // Add Tinker Phrases
+        // Add Theif Phrases
+        // Add Weaponsmith Phrases
+
         // Generic Phrases
 
         private static readonly string[] _genericPhrases =
@@ -406,14 +422,11 @@ namespace Server.Misc
 
         private static string SelectPhrase(BaseCreature creature)
         {
-            var hue = creature.SpeechHue;
-            var isGuard = hue == 0x23F; // Guard hue
-            var isCitizen = !isGuard && (hue == 0x3B2 || hue == 0x3B1 || hue == 0x451); // Common citizen hues
+            var title = creature.Title;
             var isVendor = creature is BaseVendor vendor;
-
             var roll = Utility.RandomDouble();
 
-            if (isGuard)
+            if (title == "the guard")
             {
                 // Guards speak guard phrases more often
                 if (roll < 0.15)
@@ -428,16 +441,17 @@ namespace Server.Misc
                 {
                     return _genericPhrases.RandomElement();
                 }
+                return "";
             }
 
             if (creature is BaseVendor)
             {
                  if (roll < 0.6)
                     {
-                        if (creature.Title == "the alchemist" || creature.Title == "the mage"){
+                        if (title == "the alchemist" || title == "the mage"){
                             return _magicPhrases.RandomElement();
                         }
-                        if (creature.Title == "the barkeeper" || creature.Title == "the waiter")
+                        if (title == "the barkeeper" || title == "the waiter")
                         {
                             return _barkeepPhrases.RandomElement();
                         }
@@ -466,7 +480,7 @@ namespace Server.Misc
                 return _genericPhrases.RandomElement();
             }
 
-            if (creature.Title == "the drunk")
+            if (title == "the drunk")
             {
                 if (roll < 0.1)
                 {
@@ -496,7 +510,7 @@ namespace Server.Misc
             {
                 return _negativePhrases.RandomElement();
             }
-            if (roll < 0.90)
+            if (roll < 0.60)
             {
                 return _genericPhrases.RandomElement();
             }
