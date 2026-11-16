@@ -795,6 +795,8 @@ namespace Server.Mobiles
 
         private long m_NextHealTime = Core.TickCount;
 
+        public long m_NextHumanSpeechTime = Core.TickCount;
+
         private long m_NextRummageTime;
 
         // On OSI these despawn; we queue a return home instead of deleting.
@@ -3871,6 +3873,7 @@ namespace Server.Mobiles
         public virtual void OnThink()
         {
             var tc = Core.TickCount;
+            HumanSpeech.TryRandomSpeech(this);
 
             if (EnableRummaging && CanRummageCorpses && !Summoned && !Controlled && tc - m_NextRummageTime >= 0)
             {
@@ -5174,6 +5177,16 @@ namespace Server.Mobiles
                 5 => -Utility.RandomMinMax(10000, 10000),
                 _ => Karma
             };
+        }
+
+        public void SetNextHumanSpeechTime(long time)
+        {
+            m_NextHumanSpeechTime = time;
+        }
+
+        public long GetNextHumanSpeechTime()
+        {
+            return m_NextHumanSpeechTime;
         }
 
         public void PackArcaneScroll(int min, int max)
