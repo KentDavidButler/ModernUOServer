@@ -332,6 +332,38 @@ namespace Server.Misc
             "My cup is a bit empty, could I get some MORE!"
         };
 
+        private static readonly string[] _aggressivePhrases =
+        {
+            "Get out of my way!",
+            "Move along, or else!",
+            "I don't have time for this.",
+            "You better watch yourself.",
+            "Don't make me angry.",
+            "I won't warn you again.",
+            "Step aside, or face the consequences.",
+            "I don't take kindly to threats.",
+            "You'd best leave before things get ugly.",
+            "I suggest you leave now.",
+            "I should bash your face in!",
+            "I hope monsters come and eat you!",
+            "Something you need, you miserable wretch!",
+            "What are you starin' at?",
+            "Gods strike you down!",
+            "What are you babbling about?",
+            "Run away pest!",
+            "Not very intelligent, are you?",
+            "Ah, you have a death wish.",
+            "You behave like a child!",
+            "Your mother was a troll!",
+            "Watch yer back!",
+            "Y'all are stupid!",
+            "How's that? Owned, suckah!",
+            "Get the hell out of here!",
+            "Something must be wrong with me, I almost understood that.",
+            "Have you ever had an original thought?",
+            "I'll put it on your tombstone."
+        };
+
         public static bool TryRandomSpeech(BaseCreature creature)
         {
             if (!Enabled
@@ -384,6 +416,10 @@ namespace Server.Misc
             if (isGuard)
             {
                 // Guards speak guard phrases more often
+                if (roll < 0.15)
+                {
+                    return _aggressivePhrases.RandomElement();
+                }
                 if (roll < 0.55)
                 {
                     return _guardPhrases.RandomElement();
@@ -396,136 +432,79 @@ namespace Server.Misc
 
             if (creature is BaseVendor)
             {
-                if (creature.Title == "the alchemist" || creature.Title == "the mage")
-                {
-                    if (roll < 0.4)
+                 if (roll < 0.6)
                     {
-                        return _magicPhrases.RandomElement();
+                        if (creature.Title == "the alchemist" || creature.Title == "the mage"){
+                            return _magicPhrases.RandomElement();
+                        }
+                        if (creature.Title == "the barkeeper" || creature.Title == "the waiter")
+                        {
+                            return _barkeepPhrases.RandomElement();
+                        }
+                        if (creature.GetType() == typeof(InnKeeper))
+                        {
+                            return _innkeeperPhrases.RandomElement();
+                        }
+                         if (creature.GetType() == typeof(Blacksmith))
+                        {
+                            return _smithPhrases.RandomElement();
+                        }
+                        if (creature.GetType() == typeof(Miner))
+                        {
+                            return _minorPhrases.RandomElement();
+                        }
+                        if (creature is BaseHealer)
+                        {
+                            return _healerPhrases.RandomElement();
+                        }
                     }
-                    if (roll < 0.8)
+                    if (roll < 0.85)
                     {
                         return _vendorPhrases.RandomElement();
                     }
-                }
 
-                if (creature.Title == "the barkeeper" || creature.Title == "the waiter")
-                {
-                    if (roll < 0.4)
-                    {
-                        return _barkeepPhrases.RandomElement();
-                    }
-                    if (roll < 0.8)
-                    {
-                        return _vendorPhrases.RandomElement();
-                    }
-                }
-
-                if (creature.GetType() == typeof(InnKeeper))
-                {
-                    if (roll < 0.4)
-                    {
-                        return _innkeeperPhrases.RandomElement();
-                    }
-                    if (roll < 0.8)
-                    {
-                        return _vendorPhrases.RandomElement();
-                    }
-                }
-
-                if (creature.GetType() == typeof(Blacksmith))
-                {
-                    if (roll < 0.4)
-                    {
-                        return _smithPhrases.RandomElement();
-                    }
-                    if (roll < 0.8)
-                    {
-                        return _vendorPhrases.RandomElement();
-                    }
-                }
-
-                if (creature.GetType() == typeof(Miner))
-                {
-                    if (roll < 0.4)
-                    {
-                        return _minorPhrases.RandomElement();
-                    }
-                    if (roll < 0.8)
-                    {
-                        return _vendorPhrases.RandomElement();
-                    }
-                }
                 return _genericPhrases.RandomElement();
-            }
-
-            if (creature is BaseHealer)
-            {
-
-                if (roll < 0.4)
-                {
-                    return _healerPhrases.RandomElement();
-                }
-                if (roll < 0.9)
-                {
-                    return _vendorPhrases.RandomElement();
-                }
-                return _genericPhrases.RandomElement();
-            }
-
-            // Generic NPCs
-            if (creature.Title == "the peasant" || 
-                creature.Title == "the actor" || 
-                creature.Title == "the artist" || 
-                creature.Title == "the gypsy" || 
-                creature.Title == "the sculptor" )
-            {
-                if (roll < 0.5)
-                {
-                    return _drunkPhrases.RandomElement();
-                }
-                if (roll < 0.6)
-                {
-                    return _genericPhrases.RandomElement();
-                }
-                if (roll < 0.90)
-                {
-                    return _negativePhrases.RandomElement();
-                }
             }
 
             if (creature.Title == "the drunk")
             {
-                if (roll < 0.8)
+                if (roll < 0.1)
+                {
+                    return _aggressivePhrases.RandomElement();
+                }
+                if (roll < 0.3)
                 {
                     return _genericPhrases.RandomElement();
                 }
-                if (roll < 0.95)
+                if (roll < 0.5)
                 {
                     return _negativePhrases.RandomElement();
                 }
                 return _drunkPhrases.RandomElement();
             }
-   
-            if (roll < 0.6)
+
+
+            if (roll < 0.1)
             {
-                return _genericPhrases.RandomElement();
+                return _aggressivePhrases.RandomElement();
+            }
+            if (roll < 0.2)
+            {
+                return _drunkPhrases.RandomElement();
+            }
+            if (roll < 0.3)
+            {
+                return _negativePhrases.RandomElement();
             }
             if (roll < 0.90)
             {
-                    return _negativePhrases.RandomElement();
+                return _genericPhrases.RandomElement();
             }
-
+        
             return "";
         }
     }
 }
 
-// citizen
-// generic
-// idle
-// drunk
-// negative
-
-//actor, artist, Gypsy, HarborMaster, Merchants, Noble, Pesant, Prisoner, Sculptor
 
 
