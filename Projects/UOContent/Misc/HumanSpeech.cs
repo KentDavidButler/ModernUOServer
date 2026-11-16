@@ -189,7 +189,7 @@ namespace Server.Misc
             "You bring the ingots, I can make what you want."
         };
 
-        private static readonly string[] _minorPhrases =
+        private static readonly string[] _minerPhrases =
         {
             "I'm not allowed to drink, I'm a miner.",
             "Diggin' in des mines is all I got.",
@@ -463,9 +463,9 @@ namespace Server.Misc
                         {
                             return _smithPhrases.RandomElement();
                         }
-                        if (creature.GetType() == typeof(Miner))
+                        if (title == "the miner")
                         {
-                            return _minorPhrases.RandomElement();
+                            return _minerPhrases.RandomElement();
                         }
                         if (creature is BaseHealer)
                         {

@@ -25,6 +25,7 @@ using Server.Spells.Necromancy;
 using Server.Spells.Sixth;
 using Server.Spells.Spellweaving;
 using Server.Targeting;
+using Server.Engines.Harvest;
 
 namespace Server.Mobiles
 {
@@ -796,6 +797,10 @@ namespace Server.Mobiles
         private long m_NextHealTime = Core.TickCount;
 
         public long m_NextHumanSpeechTime = Core.TickCount;
+
+        public bool m_CanMine;
+
+        private long m_NextMinningTime = Core.TickCount;
 
         private long m_NextRummageTime;
 
@@ -3875,6 +3880,21 @@ namespace Server.Mobiles
             var tc = Core.TickCount;
             HumanSpeech.TryRandomSpeech(this);
 
+            if (Combatant == null && m_CanMine)
+            {
+                var now = Core.TickCount;
+                if (now - m_NextMinningTime > 0)
+                {
+                    DoMining();
+                    this.Freeze(TimeSpan.FromSeconds(2));
+
+                    // Schedule next speech at a random future interval
+                    var intervalMs = TimeSpan.FromSeconds(Utility.Random(45) + 15).TotalMilliseconds;
+                    m_NextMinningTime = (now + (int)intervalMs);
+                }
+
+            }
+
             if (EnableRummaging && CanRummageCorpses && !Summoned && !Controlled && tc - m_NextRummageTime >= 0)
             {
                 double min, max;
@@ -5179,6 +5199,11 @@ namespace Server.Mobiles
             };
         }
 
+        public void SetCanMine(bool canMine)
+        {
+            m_CanMine = canMine;
+        }
+
         public void SetNextHumanSpeechTime(long time)
         {
             m_NextHumanSpeechTime = time;
@@ -5840,6 +5865,142 @@ namespace Server.Mobiles
         public virtual void HealEffect(Mobile patient)
         {
             patient.PlaySound(HealSound);
+        }
+
+        private void GetHarvestOffset(Direction d, ref int x, ref int y, int maxDistance = 0)
+        {
+            int distance = 1;
+
+            // if provided the optional parameter maxDistance, then use that to determine the max range
+            if (maxDistance < 1)
+            {
+                distance = Utility.Random(2, maxDistance);
+            }
+
+            switch (d & Direction.Mask)
+            {
+                case Direction.North:
+                    y = y - distance;
+                    break;
+                case Direction.South:
+                    y = y + distance;
+                    break;
+                case Direction.West:
+                    x = x - distance;
+                    break;
+                case Direction.East:
+                    x = x + distance;
+                    break;
+                case Direction.Right:
+                    x = x + distance;
+                    y = y - distance;
+                    break;
+                case Direction.Left:
+                    x = x - distance;
+                    y = y + distance;
+                    break;
+                case Direction.Down:
+                    x = x + distance;
+                    y = y + distance;
+                    break;
+                case Direction.Up:
+                    x = x + distance;
+                    y = y + distance;
+                    break;
+            }
+        }
+
+        public void DoMining()
+        {
+            if (Map == null || Map == Map.Internal)
+                return;
+
+            HarvestSystem system = Mining.System;
+            HarvestDefinition def = Mining.System.OreAndStone;
+
+            // Our target is the land tile under us
+            Map map = Map;
+            Point3D loc = Location;
+            int x = 0,
+                y = 0;
+            GetHarvestOffset(Direction, ref x, ref y);
+            loc.X += x;
+            loc.Y += y;
+            int tileId = map.Tiles.GetLandTile(loc.X, loc.Y).ID & 0x3FFF;
+
+            if (!def.Validate(tileId, true))
+                return;
+
+            HarvestBank bank = def.GetBank(map, loc.X, loc.Y);
+
+            if (bank == null || bank.Current < def.ConsumedPerHarvest)
+                return;
+
+            HarvestVein vein = bank.Vein;
+
+            if (vein == null)
+                return;
+
+            HarvestResource primary = vein.PrimaryResource;
+            HarvestResource fallback = def.Resources[0];
+
+            HarvestResource resource = system.MutateResource(
+                this,
+                null,
+                def,
+                map,
+                loc,
+                vein,
+                primary,
+                fallback
+            );
+
+            double skillBase = Skills[def.Skill].Base;
+
+            Type type = null;
+
+            if (
+                skillBase >= resource.ReqSkill
+                && CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill)
+            )
+            {
+                type = system.GetResourceType(this, null, def, map, loc, resource);
+
+                if (type != null)
+                    type = system.MutateType(type, this, null, def, map, loc, resource);
+
+                if (type != null)
+                {
+                    Item item = system.Construct(type, this);
+
+                    if (item == null)
+                    {
+                        type = null;
+                    }
+                    else
+                    {
+                        if (item.Stackable)
+                        {
+                            int amount = def.ConsumedPerHarvest;
+                            int feluccaAmount = def.ConsumedPerFeluccaHarvest;
+
+                            bool inFelucca = (map == Map.Felucca);
+
+                            if (inFelucca)
+                                item.Amount = feluccaAmount;
+                            else
+                                item.Amount = amount;
+                        }
+
+                        bank.Consume(item.Amount, this);
+
+                        item.MoveToWorld(loc, map);
+
+                        system.DoHarvestingEffect(this, null, def, map, loc);
+                        system.DoHarvestingSound(this, null, def, null);
+                    }
+                }
+            }
         }
 
         public virtual void AuraDamage()
