@@ -120,6 +120,8 @@ namespace Server.Engines.Harvest
             Definitions = new[] { lumber };
         }
 
+        public HarvestDefinition lumber { get; }
+
         public static Lumberjacking System => m_System ??= new Lumberjacking();
 
         public override bool CheckHarvest(Mobile from, Item tool)
