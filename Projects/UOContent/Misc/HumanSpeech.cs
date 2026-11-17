@@ -481,6 +481,23 @@ namespace Server.Misc
                 return _genericPhrases.RandomElement();
             }
 
+            if (title == "the miner")
+            {
+                if (roll < 0.1)
+                {
+                    return _aggressivePhrases.RandomElement();
+                }
+                if (roll < 0.3)
+                {
+                    return _genericPhrases.RandomElement();
+                }
+                if (roll < 0.5)
+                {
+                    return _negativePhrases.RandomElement();
+                }
+                return _minerPhrases.RandomElement();
+            }
+
             if (title == "the drunk")
             {
                 if (roll < 0.1)

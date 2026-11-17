@@ -808,6 +808,8 @@ namespace Server.Mobiles
 
         public bool m_CanFish;
 
+         private long m_NextWalkTime = Core.TickCount;
+
         private long m_NextFishingTime = Core.TickCount;
 
         private long m_NextRummageTime;
@@ -3888,47 +3890,54 @@ namespace Server.Mobiles
             var tc = Core.TickCount;
             HumanSpeech.TryRandomSpeech(this);
 
+            if (tc - m_NextWalkTime > 0){
+                this.CantWalk = false;
+            }
+
             if (Combatant == null && m_CanMine)
             {
-                var now = Core.TickCount;
-                if (now - m_NextMinningTime > 0)
+                if (tc - m_NextMinningTime > 0)
                 {
+                    this.CantWalk = true;
                     DoMining();
-                    this.Freeze(TimeSpan.FromSeconds(2));
 
                     // Schedule next speech at a random future interval
                     var intervalMs = TimeSpan.FromSeconds(Utility.Random(45) + 15).TotalMilliseconds;
-                    m_NextMinningTime = (now + (int)intervalMs);
+                    m_NextMinningTime = (tc + (int)intervalMs);
+                    intervalMs = TimeSpan.FromSeconds(2).TotalMilliseconds;
+                    m_NextWalkTime = (tc + (int)intervalMs);
                 }
 
             }
 
             if (Combatant == null && m_CanLumberjack)
             {
-                var now = Core.TickCount;
-                if (now - m_NextLumberjackingTime > 0)
+                if (tc - m_NextLumberjackingTime > 0)
                 {
+                    this.CantWalk = true;
                     DoLumberjacking();
-                    this.Freeze(TimeSpan.FromSeconds(2));
 
                     // Schedule next speech at a random future interval
                     var intervalMs = TimeSpan.FromSeconds(Utility.Random(45) + 15).TotalMilliseconds;
-                    m_NextLumberjackingTime = (now + (int)intervalMs);
+                    m_NextLumberjackingTime = (tc + (int)intervalMs);
+                    intervalMs = TimeSpan.FromSeconds(2).TotalMilliseconds;
+                    m_NextWalkTime = (tc + (int)intervalMs);
                 }
 
             }
 
             if (Combatant == null && m_CanFish)
             {
-                var now = Core.TickCount;
-                if (now - m_NextFishingTime > 0)
+                if (tc - m_NextFishingTime > 0)
                 {
+                    this.CantWalk = true;
                     DoFishing();
-                    this.Freeze(TimeSpan.FromSeconds(2));
 
                     // Schedule next speech at a random future interval
                     var intervalMs = TimeSpan.FromSeconds(Utility.Random(45) + 15).TotalMilliseconds;
-                    m_NextFishingTime = (now + (int)intervalMs);
+                    m_NextFishingTime = (tc + (int)intervalMs);
+                    intervalMs = TimeSpan.FromSeconds(2).TotalMilliseconds;
+                    m_NextWalkTime = (tc + (int)intervalMs);
                 }
 
             }
