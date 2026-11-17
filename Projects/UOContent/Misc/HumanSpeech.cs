@@ -266,6 +266,7 @@ namespace Server.Misc
         // Add Tinker Phrases
         // Add Theif Phrases
         // Add Weaponsmith Phrases
+        // Add Lumberjack Phrases
 
         // Generic Phrases
 

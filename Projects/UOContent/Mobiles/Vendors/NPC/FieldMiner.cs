@@ -18,6 +18,7 @@ public partial class FieldMiner : BaseCreature
         Title = "the miner";
         Hue = Race.Human.RandomSkinHue();
 
+        Utility.AssignRandomHair(this, true);
         if (Female = Utility.RandomBool())
         {
             Body = 0x191;
@@ -27,14 +28,20 @@ public partial class FieldMiner : BaseCreature
         {
             Body = 0x190;
             Name = NameList.RandomName("male");
+            Utility.AssignRandomFacialHair(this, true);
         }
 
-        AddItem(new FancyShirt(0x3E4));
-        AddItem(new LongPants(0x192));
+        AddItem(
+            Utility.Random(3) switch
+            {
+                0 => new FancyShirt(Utility.RandomDyedHue()),
+                1 => new Doublet(Utility.RandomDyedHue()),
+                _ => new Shirt(Utility.RandomDyedHue()) // 2
+                }
+        );
+        AddItem(new LongPants(Utility.RandomDyedHue()));
         AddItem(new Pickaxe());
-        AddItem(new ThighBoots(0x283));
-
-        Utility.AssignRandomHair(this);
+        AddItem(new ThighBoots(Utility.RandomDyedHue()));
 
         var pack = new Backpack
         {

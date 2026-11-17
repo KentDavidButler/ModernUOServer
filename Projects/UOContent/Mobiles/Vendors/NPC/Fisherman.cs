@@ -13,6 +13,7 @@ namespace Server.Mobiles
         public Fisherman() : base("the fisher")
         {
             SetSkill(SkillName.Fishing, 75.0, 98.0);
+            SetCanFish(true);
         }
 
         protected override List<SBInfo> SBInfos => m_SBInfos;

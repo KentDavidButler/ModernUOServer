@@ -806,6 +806,10 @@ namespace Server.Mobiles
 
         private long m_NextLumberjackingTime = Core.TickCount;
 
+        public bool m_CanFish;
+
+        private long m_NextFishingTime = Core.TickCount;
+
         private long m_NextRummageTime;
 
         // On OSI these despawn; we queue a return home instead of deleting.
@@ -3914,6 +3918,21 @@ namespace Server.Mobiles
 
             }
 
+            if (Combatant == null && m_CanFish)
+            {
+                var now = Core.TickCount;
+                if (now - m_NextFishingTime > 0)
+                {
+                    DoFishing();
+                    this.Freeze(TimeSpan.FromSeconds(2));
+
+                    // Schedule next speech at a random future interval
+                    var intervalMs = TimeSpan.FromSeconds(Utility.Random(45) + 15).TotalMilliseconds;
+                    m_NextFishingTime = (now + (int)intervalMs);
+                }
+
+            }
+
             if (EnableRummaging && CanRummageCorpses && !Summoned && !Controlled && tc - m_NextRummageTime >= 0)
             {
                 double min, max;
@@ -5228,6 +5247,11 @@ namespace Server.Mobiles
             m_CanLumberjack = canLumberjack;
         }
 
+        public void SetCanFish(bool canFishing)
+        {
+            m_CanFish = canFishing;
+        }
+
         public void SetNextHumanSpeechTime(long time)
         {
             m_NextHumanSpeechTime = time;
@@ -6141,6 +6165,102 @@ namespace Server.Mobiles
 
                         system.DoHarvestingEffect(this, null, def, map, loc);
                         this.Animate(Utility.RandomList(def.EffectActions), 5, 4, true, true, 0);
+                        system.DoHarvestingSound(this, null, def, null);
+                    }
+                }
+            }
+        }
+
+        public void DoFishing()
+        {
+            if (Map == null || Map == Map.Internal)
+                return;
+
+            HarvestSystem system = Fishing.System;
+            HarvestDefinition def = Fishing.System.Definitions[0];
+            // Tiles that we can fish from, #100 is a tile used between land and sea
+            // all other tiles are water tiles
+            int[] validTiles = { 100, 168, 169, 170, 171, 310, 311 };
+
+            // Our target is the land tile under us
+            Map map = Map;
+            Point3D loc = Location;
+            int x = 0,
+                y = 0;
+            GetHarvestOffset(Direction, ref x, ref y, 6);
+            loc.X += x;
+            loc.Y += y;
+            int tileId = map.Tiles.GetLandTile(loc.X, loc.Y).ID;
+
+            if (!validTiles.Contains(tileId))
+                return;
+
+            HarvestBank bank = def.GetBank(map, loc.X, loc.Y);
+
+            if (bank == null || bank.Current < def.ConsumedPerHarvest)
+                return;
+
+            HarvestVein vein = bank.Vein;
+
+            if (vein == null)
+                return;
+
+            HarvestResource primary = vein.PrimaryResource;
+            HarvestResource fallback = def.Resources[0];
+
+            HarvestResource resource = system.MutateResource(
+                this,
+                null,
+                def,
+                map,
+                loc,
+                vein,
+                primary,
+                fallback
+            );
+
+            double skillBase = Skills[def.Skill].Base;
+
+            Type type = null;
+
+            if (
+                skillBase >= resource.ReqSkill
+                && CheckSkill(def.Skill, resource.MinSkill, resource.MaxSkill)
+            )
+            {
+                type = system.GetResourceType(this, null, def, map, loc, resource);
+
+                if (type != null)
+                    type = system.MutateType(type, this, null, def, map, loc, resource);
+
+                if (type != null)
+                {
+                    Item item = system.Construct(type, this);
+
+                    if (item == null)
+                    {
+                        type = null;
+                    }
+                    else
+                    {
+                        if (item.Stackable)
+                        {
+                            int amount = def.ConsumedPerHarvest;
+                            int feluccaAmount = def.ConsumedPerFeluccaHarvest;
+
+                            bool inFelucca = (map == Map.Felucca);
+
+                            if (inFelucca)
+                                item.Amount = feluccaAmount;
+                            else
+                                item.Amount = amount;
+                        }
+
+                        bank.Consume(item.Amount, this);
+
+                        item.MoveToWorld(this.Location, map);
+
+                        system.DoHarvestingEffect(this, null, def, map, loc);
                         system.DoHarvestingSound(this, null, def, null);
                     }
                 }

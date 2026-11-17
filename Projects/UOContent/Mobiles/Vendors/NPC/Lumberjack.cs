@@ -18,6 +18,7 @@ public partial class Lumberjack : BaseCreature
         Title = "the lumberjack";
         Hue = Race.Human.RandomSkinHue();
 
+        Utility.AssignRandomHair(this, true);
         if (Female = Utility.RandomBool())
         {
             Body = 0x191;
@@ -27,14 +28,20 @@ public partial class Lumberjack : BaseCreature
         {
             Body = 0x190;
             Name = NameList.RandomName("male");
+            Utility.AssignRandomFacialHair(this, true);
         }
 
-        AddItem(new FancyShirt(Utility.RandomDyedHue()));
+        AddItem(
+            Utility.Random(3) switch
+            {
+                0 => new FancyShirt(Utility.RandomDyedHue()),
+                1 => new Doublet(Utility.RandomDyedHue()),
+                _ => new Shirt(Utility.RandomDyedHue()) // 2
+                }
+        );
         AddItem(new LongPants(Utility.RandomDyedHue()));
         AddItem(new Hatchet());
         AddItem(new ThighBoots(Utility.RandomDyedHue()));
-
-        Utility.AssignRandomHair(this);
 
         var pack = new Backpack
         {
