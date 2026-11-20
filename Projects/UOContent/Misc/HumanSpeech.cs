@@ -382,6 +382,91 @@ namespace Server.Misc
             "I'll put it on your tombstone."
         };
 
+        // Region Phrases
+
+        private static readonly string[] _minocPhrases =
+        {
+            "Stay away from the caves south west of here, they are dangerous.",
+            "The depths of the Covetous are said to have ancient dead throughout it.",
+            "People have gone missing in the mines North of town.",
+            "Ehh, more gypsies are showing up in town. I don't like it.",
+            "People come here thinking mining is easy, but it's not.",
+            "Minoc ain't got much to offer, try heading to Vesper",
+            "I wouldn't so sailing into Lost Hope Bay, I'd sail out of Vesper.",
+            "Minoc is the only honest working town in the kingdom!",
+            "I head there's dark magic in the depth of Covetous.",
+            "Lore has it that an ancient evil lies in the depths of Covetous.",
+            "Only city smaller than Minoc is Coven, and that place is a dump.",
+            "Cove makes Minoc look like a paradise, and it's not.",
+            "Supply up, Minoc is far from Brit, and the raod is dangerous.",
+            "We got a shop, a bank, and a stable, not much more.",
+            "The best metal work in all the kingdom is done in Minoc!",
+            "The best weaponsmiths in the kingdom are in Minoc.",
+            "The best craftsmen in the kingdom are in Minoc."
+
+        };
+
+        private static readonly string[] _vesperPhrases =
+        {
+            "I hope you are able to swim",
+            "Be careful, the water is deep and dangerous.",
+            "Stay away from the graveyard, it's haunted.",
+            "The graveyard west of town is haunted!",
+            "People have seen the dead walking in the graveyard.",
+            "People have disappeared in the krypts west of town.",
+            "There's a tunnel to the lost lands under the graveyard.",
+            "The dead come from the tunnel under the graveyard, they say.",
+            "Stay away from Covetous, it's dangerous.",
+            "A dark evil lurks in the depths of Covetous, they say.",
+            "Covetous is due West of here.",
+            "Vesper is a port to the world!",
+            "Vesper has everything you'll ever need, and more.",
+            "Vesper is better than Brit!",
+            "Vesper is the best city in all of Britannia.",
+            "Sailing East from Vesper will take you to Nujel'm.",
+            "Sailing North Ease of Vesper will take you to the Ice Islands.",
+            "Sailing South of Vesper will take you to Buccaneers Den",
+            "I wouldn't go to Cove, it's a dump.",
+            "I wouldn't go to Minoc, it's a dump.",
+            "I wouldn't go to Britain, it's a dump.",
+            "The freshest fish come from these waters!",
+            "The best fish come from these waters!",
+            "Our guards need seahorses",
+            "Thieves get dunked in this town",
+            "Get caught stealing, you go in the drink"
+        };
+
+        private static readonly string[] _britPhrases =
+        {
+            "You're standing in the center of the Kingdom.",
+            "Britain is the meca of the world.",
+            "Britain is the best city in all of Britannia.",
+            "Britain is the capital of the Kingdom.",
+            "Britain is the best city in all of Britannia.",
+            "Vesper thinks it's better than Britain, but it's not.",
+            "Vesper is the toilet we dump our horse manure into.",
+            "Careful, the guards are strict in Britain.",
+            "Be warned, the sewers are dangerous.",
+            "I heard the sewers can take you to another land.",
+            "The sewers are dangerous, stay away.",
+            "The sewers are dangerous, but they can take you to another land.",
+            "The entrance to the sewers are found in the center of town.",
+            "Careful, the graveyard north of town is haunted.",
+            "The dead walk the graveyard north of town, they say.",
+            "The graveyard north of town is haunted.",
+            "In the depths of Despise is a mean old oger!",
+            "Careful, despise is north of here, and it's dangerous.",
+            "Head north through the passage to get to Despise.",
+            "Despise, North of town, isn't for the faint of heart.",
+            "There's a hedge maze south-west that has dark magic.",
+            "The hedge maze south-west is dangerous, stay away.",
+            "Stay away from the maze south-west of Brit.",
+            "Britain is so big it has two banks! Amazing, right?",
+            "Brit has two castles!",
+            "You'll find everything you need in Britain, and more.",
+            "There's two of every shop in Britain, and more."
+        };
+
         public static bool TryRandomSpeech(BaseCreature creature)
         {
             if (!Enabled
@@ -428,14 +513,30 @@ namespace Server.Misc
             var isVendor = creature is BaseVendor vendor;
             var roll = Utility.RandomDouble();
 
+            if (roll < 0.1)
+            {
+                if(creature.GetRegionName() == "Minoc")
+                {
+                    return _minocPhrases.RandomElement();
+                }
+                if(creature.GetRegionName() == "Vesper")
+                {
+                    return _vesperPhrases.RandomElement();
+                }
+                if(creature.GetRegionName() == "Britain")
+                {
+                    return _britPhrases.RandomElement();
+                }
+            }
+
             if (title == "the guard")
             {
                 // Guards speak guard phrases more often
-                if (roll < 0.15)
+                if (roll < 0.25)
                 {
                     return _aggressivePhrases.RandomElement();
                 }
-                if (roll < 0.55)
+                if (roll < 0.65)
                 {
                     return _guardPhrases.RandomElement();
                 }
@@ -484,7 +585,7 @@ namespace Server.Misc
 
             if (title == "the miner")
             {
-                if (roll < 0.1)
+                if (roll < 0.2)
                 {
                     return _aggressivePhrases.RandomElement();
                 }
@@ -492,7 +593,7 @@ namespace Server.Misc
                 {
                     return _genericPhrases.RandomElement();
                 }
-                if (roll < 0.5)
+                if (roll < 0.4)
                 {
                     return _negativePhrases.RandomElement();
                 }
@@ -501,7 +602,7 @@ namespace Server.Misc
 
             if (title == "the drunk")
             {
-                if (roll < 0.1)
+                if (roll < 0.2)
                 {
                     return _aggressivePhrases.RandomElement();
                 }
@@ -509,7 +610,7 @@ namespace Server.Misc
                 {
                     return _genericPhrases.RandomElement();
                 }
-                if (roll < 0.5)
+                if (roll < 0.4)
                 {
                     return _negativePhrases.RandomElement();
                 }

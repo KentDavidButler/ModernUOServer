@@ -5271,6 +5271,11 @@ namespace Server.Mobiles
             return m_NextHumanSpeechTime;
         }
 
+        public string GetRegionName()
+        {
+            return Region?.Name;
+        }
+
         public void PackArcaneScroll(int min, int max)
         {
             PackArcaneScroll(Utility.RandomMinMax(min, max));
